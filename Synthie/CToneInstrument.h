@@ -20,4 +20,3 @@ private:
     CSineWave   m_sinewave;
 
 };
-

@@ -9,6 +9,10 @@ void CNote::XmlLoad(IXMLDOMNode* xml,
     m_node = xml;
     m_instrument = instrument;
 
+    // Get the parent node:
+
+    xml->get_parentNode(&m_parent);
+
     // Get a list of all attribute nodes and the
     // length of that list
     CComPtr<IXMLDOMNamedNodeMap> attributes;

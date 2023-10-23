@@ -12,6 +12,7 @@ public:
     double Beat() const { return m_beat; }
     const std::wstring& Instrument() const { return m_instrument; }
     IXMLDOMNode* Node() { return m_node; }
+    IXMLDOMNode* PNode() { return m_parent; }
 
     void XmlLoad(IXMLDOMNode* xml, std::wstring& instrument);
 
@@ -21,7 +22,10 @@ private:
     std::wstring m_instrument;
     int m_measure;
     double m_beat;
-    CComPtr<IXMLDOMNode> m_node;
+    CComPtr<IXMLDOMNode> m_node = nullptr;
+
+    // Parent node, containg instrument info
+    CComPtr<IXMLDOMNode> m_parent = nullptr;
 
 };
 

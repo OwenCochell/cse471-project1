@@ -5,8 +5,12 @@
 #include <list>
 #include <string>
 #include <vector>
-#include "CInstrument.h"
+#include <map>
+#include <memory>
 #include "CNote.h"
+#include "WaveContainer.h"
+
+class CInstrument;
 
 using namespace std;
 
@@ -46,6 +50,8 @@ public:
     void Start(void);
     void Clear(void);
 
+    std::map<wstring, std::shared_ptr<WaveContainer>>* GetSampleMap() { return &(this->sample_map); }
+
     void OpenScore(CString& filename);
 
     bool CSynthesizer::Generate(double* frame);
@@ -54,7 +60,8 @@ private:
     void XmlLoadScore(IXMLDOMNode* xml);
     void XmlLoadInstrument(IXMLDOMNode* xml);
     void XmlLoadNote(IXMLDOMNode* xml, std::wstring& instrument);
-
+    void XmlLoadSamples(IXMLDOMNode* xml);
+    void XmlLoadSample(IXMLDOMNode* xml);
 
     double  m_bpm;                  //!< Beats per minute
     int     m_beatspermeasure;  //!< Beats per measure
@@ -71,6 +78,8 @@ private:
     std::list<CInstrument*>  m_instruments;
     std::vector<CNote> m_notes;
 
+    // A map of samples loaded for use by other components
+    std::map<wstring, std::shared_ptr<WaveContainer>> sample_map = {};
 
 };
 

@@ -3,32 +3,27 @@
 #include <vector>
 
 #include "CInstrument.h"
+#include "CSample.h"
 
 class Wavetable : public CInstrument
 {
 public:
 
+	Wavetable();
+
 	virtual bool Generate();
 
-	void SetFreq(double freq) { this->freq = freq; };
+	virtual void Start() { samp.Start(); }
+
+	void SetFreq(double freq) { this->freq = freq; samp.SetFrequency(freq); };
+	void SetSamp(CSample samp) { this->samp = samp; }
 
 	virtual void SetNote(CNote* note) override;
 private:
 
-	// Table of samples
-	std::vector<short> wavetable;
-
-	// Loop Points
-
-	// Sample the start section ends
-	int start_point;
-
-	// Sample the sustain sectio  ends
-	int sustain_point;
+	// Sample component to utilize:
+	CSample samp;
 
 	// Frequency to output
 	double freq;
-
-	// Current sample we are on
-	int curr;
 };

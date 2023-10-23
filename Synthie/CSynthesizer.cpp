@@ -2,8 +2,11 @@
 #include "CSynthesizer.h"
 #include "CToneInstrument.h"
 #include "xmlhelp.h"
+#include "audio/Wave.h"
+#include "Wavetable.h"
 
 #include <algorithm>
+#include <utility>
 
 //! Start the synthesizer
 void CSynthesizer::Start(void)
@@ -78,6 +81,126 @@ void CSynthesizer::XmlLoadNote(IXMLDOMNode* xml, std::wstring& instrument)
 
 }
 
+void CSynthesizer::XmlLoadSamples(IXMLDOMNode* xml)
+{
+    // Get a list of all attribute nodes and the
+    // length of that list
+    CComPtr<IXMLDOMNamedNodeMap> attributes;
+    xml->get_attributes(&attributes);
+    long len;
+    attributes->get_length(&len);
+
+    // Loop over the list of attributes
+    for (int i = 0; i < len; i++)
+    {
+        // Get attribute i
+        CComPtr<IXMLDOMNode> attrib;
+        attributes->get_item(i, &attrib);
+
+        // Get the name of the attribute
+        CComBSTR name;
+        attrib->get_nodeName(&name);
+
+        // Get the value of the attribute.  A CComVariant is a variable
+        // that can have any type. It loads the attribute value as a
+        // string (UNICODE), but we can then change it to an integer 
+        // (VT_I4) or double (VT_R8) using the ChangeType function 
+        // and then read its integer or double value from a member variable.
+        CComVariant value;
+        attrib->get_nodeValue(&value);
+
+        if (name == L"bpm")
+        {
+            value.ChangeType(VT_R8);
+            m_bpm = value.dblVal;
+            m_secperbeat = 1 / (m_bpm / 60);
+        }
+        else if (name == L"beatspermeasure")
+        {
+            value.ChangeType(VT_I4);
+            m_beatspermeasure = value.intVal;
+        }
+
+    }
+
+
+    CComPtr<IXMLDOMNode> node;
+    xml->get_firstChild(&node);
+    for (; node != NULL; NextNode(node))
+    {
+        // Get the name of the node
+        CComBSTR name;
+        node->get_nodeName(&name);
+
+        if (name == L"sample")
+        {
+            XmlLoadSample(node);
+        }
+    }
+}
+
+void CSynthesizer::XmlLoadSample(IXMLDOMNode* xml)
+{
+    // Get a list of all attribute nodes and the
+// length of that list
+    CComPtr<IXMLDOMNamedNodeMap> attributes;
+    xml->get_attributes(&attributes);
+    long len;
+    attributes->get_length(&len);
+
+    // Attributes to set:
+
+    wstring sname;
+    wstring path;
+
+    // Loop over the list of attributes
+    for (int i = 0; i < len; i++)
+    {
+        // Get attribute i
+        CComPtr<IXMLDOMNode> attrib;
+        attributes->get_item(i, &attrib);
+
+        // Get the name of the attribute
+        CComBSTR name;
+        attrib->get_nodeName(&name);
+
+        // Get the value of the attribute.  A CComVariant is a variable
+        // that can have any type. It loads the attribute value as a
+        // string (UNICODE), but we can then change it to an integer 
+        // (VT_I4) or double (VT_R8) using the ChangeType function 
+        // and then read its integer or double value from a member variable.
+        CComVariant value;
+        attrib->get_nodeValue(&value);
+
+        if (name == L"name")
+        {
+            sname = value.bstrVal;
+        }
+        else if (name == L"path")
+        {
+            path = value.bstrVal;
+        }
+    }
+
+    // Create a wave in component:
+
+    CWaveIn wave(path.c_str());
+
+    // Create WaveContainer:
+
+    auto container = std::make_shared<WaveContainer>();
+
+    // Populate wave container:
+
+    container->FromCWave(wave);
+
+    // Add wave container to sample map:
+
+    auto pair = std::pair<wstring, std::shared_ptr<WaveContainer>>(sname, container);
+
+    sample_map.insert(pair);
+}
+
 void CSynthesizer::XmlLoadScore(IXMLDOMNode* xml)
 {
     // Get a list of all attribute nodes and the
@@ -134,6 +257,9 @@ void CSynthesizer::XmlLoadScore(IXMLDOMNode* xml)
             XmlLoadInstrument(node);
         }
 
+        if (name == "samples") {
+            XmlLoadSamples(node);
+        }
     }
 }
 
@@ -221,9 +347,18 @@ bool CSynthesizer::Generate(double* frame)
             instrument = new CToneInstrument();
         }
 
+        //
+        // Wavetable Voice
+        //
+
+        if (note->Instrument() == L"WaveTable") {
+            instrument = new Wavetable();
+        }
+
         // Configure the instrument object
         if (instrument != NULL)
         {
+            instrument->SetSynth(this);
             instrument->SetSampleRate(GetSampleRate());
             instrument->SetNote(note);
             instrument->SetBPM(m_bpm);

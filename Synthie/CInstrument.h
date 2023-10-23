@@ -2,6 +2,7 @@
 #include "CAudioNode.h"
 #include "CNote.h"
 #include "AmplitudeEnvelope.h"
+#include "CSynthesizer.h"
 
 class CInstrument :
     public CAudioNode
@@ -14,6 +15,9 @@ public:
     double GetDuration() const { return this->m_duration; }
 
     double GetAmplitude() const { return this->current_amplitude; }
+
+    CSynthesizer* GetSynth() const { return this->synth; }
+    void SetSynth(CSynthesizer* syn) { this->synth = syn; }
 
     AmplitudeEnvelope* GetAmplitudeEnvelope() { return &env; }
 
@@ -35,4 +39,7 @@ private:
 
     // Amplitude of the last envelope operation
     double current_amplitude = 0;
+
+    // Synth we are a member of
+    CSynthesizer* synth;
 };

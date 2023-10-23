@@ -134,6 +134,7 @@
     <ClCompile Include="CAudioNode.cpp" />
     <ClCompile Include="CInstrument.cpp" />
     <ClCompile Include="CNote.cpp" />
+    <ClCompile Include="CSample.cpp" />
     <ClCompile Include="CSineWave.cpp" />
     <ClCompile Include="CSynthesizer.cpp" />
     <ClCompile Include="CToneInstrument.cpp" />
@@ -150,6 +151,7 @@
     <ClCompile Include="audio\Wave.cpp" />
     <ClCompile Include="audio\WaveformBuffer.cpp" />
     <ClCompile Include="audio\WaveformWnd.cpp" />
+    <ClCompile Include="WaveContainer.cpp" />
     <ClCompile Include="Wavetable.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -160,6 +162,7 @@
     <ClInclude Include="CAudioNode.h" />
     <ClInclude Include="CInstrument.h" />
     <ClInclude Include="CNote.h" />
+    <ClInclude Include="CSample.h" />
     <ClInclude Include="CSineWave.h" />
     <ClInclude Include="CSynthesizer.h" />
     <ClInclude Include="CToneInstrument.h" />
@@ -175,6 +178,7 @@
     <ClInclude Include="audio\Wave.h" />
     <ClInclude Include="audio\WaveformBuffer.h" />
     <ClInclude Include="audio\WaveformWnd.h" />
+    <ClInclude Include="WaveContainer.h" />
     <ClInclude Include="Wavetable.h" />
     <ClInclude Include="xmlhelp.h" />
   </ItemGroup>

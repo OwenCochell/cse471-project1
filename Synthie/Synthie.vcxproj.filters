@@ -75,6 +75,9 @@
     <ClCompile Include="AmplitudeEnvelope.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Wavetable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="audio\DirSound.h">
@@ -144,6 +147,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="AmplitudeEnvelope.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Wavetable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

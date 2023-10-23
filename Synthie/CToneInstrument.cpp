@@ -4,41 +4,36 @@
 
 CToneInstrument::CToneInstrument(void)
 {
-    m_duration = 0.1;
+    SetDuration(0.1);
 }
 
 void CToneInstrument::Start()
 {
     m_sinewave.SetSampleRate(GetSampleRate());
     m_sinewave.Start();
-    m_time = 0;
 }
 
 
 bool CToneInstrument::Generate()
 {
+
+    // Run the top level generate method:
+    
+    bool done = CInstrument::Generate();
+
     // Tell the component to generate an audio sample
     m_sinewave.Generate();
 
-    // Determine time of beat:
+    // Get the amplitude
 
-    double tpb = 1 / (this->GetBPM() / 60);
-
-    GetAmplitudeEnvelope()->SetTimePerBeat(tpb);
-
-    // Determine the amplitude:
-
-    double amp = GenerateEnvelopeAmp(m_time);
+    double amp = this->GetAmplitude();
 
     // Read the component's sample and make it our resulting frame.
     m_frame[0] = amp * m_sinewave.Frame(0);
     m_frame[1] = amp * m_sinewave.Frame(1);
 
-    // Update time
-    m_time += GetSamplePeriod();
-
-    // We return true until the time reaches the duration.
-    return m_time < m_duration * tpb;
+    // We return if we are done.
+    return done;
 }
 
 void CToneInstrument::SetNote(CNote* note)

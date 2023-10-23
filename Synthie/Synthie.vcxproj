@@ -150,6 +150,7 @@
     <ClCompile Include="audio\Wave.cpp" />
     <ClCompile Include="audio\WaveformBuffer.cpp" />
     <ClCompile Include="audio\WaveformWnd.cpp" />
+    <ClCompile Include="Wavetable.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AmplitudeEnvelope.h" />
@@ -174,6 +175,7 @@
     <ClInclude Include="audio\Wave.h" />
     <ClInclude Include="audio\WaveformBuffer.h" />
     <ClInclude Include="audio\WaveformWnd.h" />
+    <ClInclude Include="Wavetable.h" />
     <ClInclude Include="xmlhelp.h" />
   </ItemGroup>
   <ItemGroup>

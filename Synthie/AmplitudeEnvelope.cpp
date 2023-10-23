@@ -37,6 +37,6 @@ double AmplitudeEnvelope::DetermineAmplitude(double time) {
 
 	}
 
-	// Otherwise, return 1:
-	return 1;
+	// Otherwise, return sustain:
+	return this->sustain;
 }

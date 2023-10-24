@@ -44,10 +44,10 @@ public:
 	int GetSustainPoint() const { return this->sustain_point; }
 	void SetSustainPoint(int sustain) { this->sustain_point = sustain; }
 
-	int GetBaseFrequency() const { return this->base_freq; }
+	double GetBaseFrequency() const { return this->base_freq; }
 	void SetBaseFrequency(double freq) { this->base_freq = freq; }
 
-	int GetFrequency() const { return this->freq; }
+	double GetFrequency() const { return this->freq; }
 	void SetFrequency(double freq) { this->freq = freq; }
 
 	void SetWaveContainer(std::shared_ptr<WaveContainer> wav) { wavetable = wav; }

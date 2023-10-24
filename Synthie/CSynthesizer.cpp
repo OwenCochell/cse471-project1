@@ -152,6 +152,7 @@ void CSynthesizer::XmlLoadSample(IXMLDOMNode* xml)
 
     wstring sname;
     wstring path;
+    wstring dump;
 
     // Loop over the list of attributes
     for (int i = 0; i < len; i++)
@@ -180,6 +181,11 @@ void CSynthesizer::XmlLoadSample(IXMLDOMNode* xml)
         {
             path = value.bstrVal;
         }
+
+        else if (name == L"dump") {
+
+            dump = value.bstrVal;
+        }
     }
 
     // Create a wave in component:
@@ -199,6 +205,23 @@ void CSynthesizer::XmlLoadSample(IXMLDOMNode* xml)
     auto pair = std::pair<wstring, std::shared_ptr<WaveContainer>>(sname, container);
 
     sample_map.insert(pair);
+
+    // Determine if we need to dump:
+
+    if (!dump.empty()) {
+
+        // Create the WaveOut:
+
+        CWaveOut owave(dump.c_str());
+
+        // Dump the contents:
+
+        container->ToCWave(owave);
+
+        // Close the wave:
+
+        owave.close();
+    }
 }
 
 void CSynthesizer::XmlLoadScore(IXMLDOMNode* xml)

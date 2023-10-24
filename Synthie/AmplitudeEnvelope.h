@@ -28,7 +28,7 @@ private:
 	double duration;
 	double attack;
 	double release;
-	double sustain = 1;
+	double sustain = 1.;
 	double tpb;
 };
 

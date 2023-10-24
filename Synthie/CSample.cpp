@@ -15,7 +15,8 @@ bool CSample::Generate()
 
     // Determine the rate to increment:
 
-    double increment = (wavetable->size() / GetSampleRate()) * (freq / base_freq);
+    //double increment = (wavetable->size() / GetSampleRate()) * (freq / base_freq);
+    double increment = (freq / base_freq);
 
     // Increment the sample:
 
@@ -29,13 +30,19 @@ bool CSample::Generate()
     }
 
     // Determine the actual index
-    // (for now we just round):
+ 
+    // Rounding Method:
 
-    int index = int(sample + 0.5);
+    //int index = int(sample + 0.5);
+    //double samp = this->wavetable->GetSamples()->at(index);
 
-    // Grab the current sample:
+    // Linear Interpolation:
 
-    short samp = this->wavetable->GetSamples()->at(index);
+    double inbetween = fmod(sample, 1);
+    double samp = 0;
+
+    samp += (1. - inbetween) * this->wavetable->GetSamples()->at(int(sample));
+    samp += inbetween * this->wavetable->GetSamples()->at(int(sample) + 1);
 
     // Set the sample:
 

@@ -22,8 +22,13 @@ bool Wavetable::Generate()
     double amp = this->GetAmplitude();
 
     // Read the component's sample and make it our resulting frame.
-    m_frame[0] = amp * samp.Frame(0);
-    m_frame[1] = amp * samp.Frame(1);
+    //m_frame[0] = amp * samp.Frame(0);
+    //m_frame[1] = amp * samp.Frame(1);
+
+    double val = amp * samp.Frame(0);
+
+    m_frame[0] = val;
+    m_frame[1] = val;
 
     return done;
 }

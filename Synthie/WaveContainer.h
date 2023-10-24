@@ -18,7 +18,7 @@ public:
 
 	int GetNumChannels() const { return this->channel; }
 
-	const std::vector<short>* GetSamples() const { return &(this->samples); }
+	const std::vector<double>* GetSamples() const { return &(this->samples); }
 
 	int size() { return this->samples.size(); }
 
@@ -27,14 +27,19 @@ public:
 	*/
 	void FromCWave(CWaveIn& wav);
 
+	void ToCWave(CWaveOut& wav);
+
 private:
 
 	// Sample rate of the audio
 	double sample_rate;
 
 	// Samples of audio data
-	std::vector<short> samples;
+	std::vector<double> samples;
 
 	// Number of channels in this container
 	int channel;
+
+	// Size of each sample
+	int sample_size;
 };

@@ -13,6 +13,14 @@ bool Wavetable::Generate()
 
     bool done = CInstrument::Generate();
 
+    // Get the frequency:
+
+    double nfreq = freq.DetermineFreq(GetTime());
+
+    // Set the frequency:
+
+    samp.SetFrequency(nfreq);
+
     // Generate the sample:
 
     samp.Generate();
@@ -35,6 +43,10 @@ bool Wavetable::Generate()
 
 void Wavetable::SetNote(CNote* note)
 {
+
+    // Send the note to the frequency component:
+    
+    freq.SetNote(note);
 
     // Get a list of all attribute nodes and the
     // length of that list
@@ -67,12 +79,6 @@ void Wavetable::SetNote(CNote* note)
             value.ChangeType(VT_R8);
             SetDuration(value.dblVal);
         }
-
-        else if (name == "note")
-        {
-            SetFreq(NoteToFrequency(value.bstrVal));
-        }
-
     }
 
     // Get list of attributes for the parent:

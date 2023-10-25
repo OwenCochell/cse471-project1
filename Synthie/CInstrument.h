@@ -27,6 +27,7 @@ public:
 
     bool IsDone();
     double GetTPB() { return 1 / (this->GetBPM() / 60); }
+    double GetTime() { return m_time; }
 private:
 
     AmplitudeEnvelope env;

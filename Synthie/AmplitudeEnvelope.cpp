@@ -40,3 +40,23 @@ double AmplitudeEnvelope::DetermineAmplitude(double time) {
 	// Otherwise, return sustain:
 	return this->sustain;
 }
+
+double LinearRamp::DetermineAmplitude(double time)
+{
+
+	// Determine if our time is done:
+
+	if (time >= GetStopTime()) {
+		// Just return stop value:
+
+		return GetStopValue();
+	}
+	return GetStartValue() + (GetStopValue() - GetStartValue()) * (time - GetStartTime()) / (GetStopTime() - GetStartTime());
+}
+
+double ConstantEnvelope::DetermineAmplitude(double time)
+{
+	// Just return the start value always:
+
+	return GetStartValue();
+}

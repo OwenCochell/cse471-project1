@@ -49,8 +49,29 @@ void CNote::XmlLoad(IXMLDOMNode* xml,
             m_beat = value.dblVal - 1;
         }
 
-    }
+        else if (name == "gliss") {
 
+            // We have a glissando,
+            // so we pitch to the given note over our duration
+
+            gnote = value.bstrVal;
+        }
+
+        else if (name == "note") {
+
+            // Set our note:
+
+            note = value.bstrVal;
+        }
+
+        else if (name == "duration") {
+
+            // Set our duration:
+
+            value.ChangeType(VT_R8);
+            duration = value.dblVal;
+        }
+    }
 }
 
 bool CNote::operator<(const CNote& b)

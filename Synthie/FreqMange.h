@@ -21,6 +21,8 @@ public:
 
 	void SetNote(CNote* note);
 
+	double GetBaseFreq() { return env->GetStartValue(); }
+
 private:
 
 	// CNote we will extract info from

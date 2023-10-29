@@ -131,6 +131,7 @@
     <ClCompile Include="audio\DirSound.cpp" />
     <ClCompile Include="audio\DirSoundSource.cpp" />
     <ClCompile Include="audio\DirSoundStream.cpp" />
+    <ClCompile Include="CAdditive.cpp" />
     <ClCompile Include="CAudioNode.cpp" />
     <ClCompile Include="CInstrument.cpp" />
     <ClCompile Include="CNote.cpp" />
@@ -160,6 +161,7 @@
     <ClInclude Include="audio\DirSound.h" />
     <ClInclude Include="audio\DirSoundSource.h" />
     <ClInclude Include="audio\DirSoundStream.h" />
+    <ClInclude Include="CAdditive.h" />
     <ClInclude Include="CAudioNode.h" />
     <ClInclude Include="CInstrument.h" />
     <ClInclude Include="CNote.h" />

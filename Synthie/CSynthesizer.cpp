@@ -4,6 +4,7 @@
 #include "xmlhelp.h"
 #include "audio/Wave.h"
 #include "Wavetable.h"
+#include "CAdditive.h"
 
 #include <algorithm>
 #include <utility>
@@ -376,6 +377,14 @@ bool CSynthesizer::Generate(double* frame)
 
         if (note->Instrument() == L"WaveTable") {
             instrument = new Wavetable();
+        }
+
+        //
+        // Additive Voice
+        //
+
+        if (note->Instrument() == L"Additive") {
+            instrument = new CAdditive();
         }
 
         // Configure the instrument object

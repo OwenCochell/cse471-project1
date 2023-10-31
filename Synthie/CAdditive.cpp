@@ -3,7 +3,6 @@
 
 #include <sstream>
 #include <iterator>
-#include <string>
 
 std::string ConvertWCSToMBS(const wchar_t* pstr, long wslen)
 {
@@ -52,6 +51,8 @@ void CAdditive::Start()
 
 void CAdditive::SetNote(CNote* note)
 {
+    CInstrument::LoadEffects(note->PNode());
+
     // Send the note to the frequency component:
 
     m_freq.SetNote(note);
@@ -150,7 +151,6 @@ void CAdditive::SetNote(CNote* note)
                 m_harmonics2.push_back(num);
             }
         }
-
     }
 }
 

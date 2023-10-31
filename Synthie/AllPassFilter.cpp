@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "AllPassFilter.h"
 
 AllPassFilter::AllPassFilter(int delaySamples)

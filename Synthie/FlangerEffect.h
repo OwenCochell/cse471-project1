@@ -4,10 +4,11 @@
 
 class FlangerEffect {
 public:
-    FlangerEffect(int sampleRate);
+    void Configure(int sampleRate);
     ~FlangerEffect();
     double process(double input);
 
+    void FromXML(IXMLDOMNode* xml);
 private:
     SimpleDelay* m_delay;
     double m_rate;

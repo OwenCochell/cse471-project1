@@ -3,12 +3,12 @@
 #include "msxml2.h"
 
 #include <list>
-#include <string>
 #include <vector>
 #include <map>
 #include <memory>
 #include "CNote.h"
 #include "WaveContainer.h"
+#include "Effects.h"
 
 class CInstrument;
 
@@ -62,6 +62,7 @@ private:
     void XmlLoadNote(IXMLDOMNode* xml, std::wstring& instrument);
     void XmlLoadSamples(IXMLDOMNode* xml);
     void XmlLoadSample(IXMLDOMNode* xml);
+    void XmlLoadEffects(IXMLDOMNode* xml);
 
     double  m_bpm;                  //!< Beats per minute
     int     m_beatspermeasure;  //!< Beats per measure
@@ -81,6 +82,8 @@ private:
     // A map of samples loaded for use by other components
     std::map<wstring, std::shared_ptr<WaveContainer>> sample_map = {};
 
+    // Effects to utilize
+    Effects effect;
 };
 
 #pragma comment(lib, "msxml2.lib")

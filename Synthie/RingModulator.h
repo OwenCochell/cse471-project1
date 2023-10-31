@@ -3,8 +3,10 @@
 
 class RingModulator {
 public:
-    RingModulator(double modFrequency, int sampleRate);
+    void Configure(double modFrequency, int sampleRate);
     double process(double input);
+
+    void FromXML(IXMLDOMNode* xml);
 
 private:
     double m_modFrequency;

@@ -3,6 +3,8 @@
 #include "CNote.h"
 #include "AmplitudeEnvelope.h"
 #include "CSynthesizer.h"
+#include "Effects.h"
+#include "xmlhelp.h"
 
 class CInstrument :
     public CAudioNode
@@ -28,6 +30,11 @@ public:
     bool IsDone();
     double GetTPB() { return 1 / (this->GetBPM() / 60); }
     double GetTime() { return m_time; }
+
+    std::vector<EffectInfo>* GetEffectInfo() { return &this->einfo; }
+
+    void LoadEffects(IXMLDOMNode* xml);
+    void LoadEffect(IXMLDOMNode* xml);
 private:
 
     AmplitudeEnvelope env;
@@ -43,4 +50,6 @@ private:
 
     // Synth we are a member of
     CSynthesizer* synth;
+
+    std::vector<EffectInfo> einfo;
 };

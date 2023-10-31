@@ -1,7 +1,8 @@
+#include "pch.h"
 #include "DRC.h"
 #include <stdlib.h>
 #include <corecrt_math.h>
-#include <CSynthesizer.cpp>
+#include <cmath>
 
 DRC::DRC() :
     m_threshold(-20.0), m_ratio(4.0), m_attack(0.001), m_release(0.05),
@@ -33,12 +34,11 @@ double DRC::Compress(double frameValue) {
     return frameValue * pow(10.0, (m_envelope - inputLevel) / 20.0);
 }
 
-void DRC::Process(double* frameIn, double* frameOut) {
-    frameOut[0] = Compress(frameIn[0]);
-    frameOut[1] = Compress(frameIn[1]);
+double DRC::Process(double frameIn) {
+    return Compress(frameIn);
 }
 
-void DRC::XmlLoad(IXMLDOMNode* xml) {
+void DRC::FromXML(IXMLDOMNode* xml) {
     CComPtr<IXMLDOMNamedNodeMap> attributes;
     xml->get_attributes(&attributes);
     long len;

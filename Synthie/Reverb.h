@@ -4,10 +4,11 @@
 
 class Reverb {
 public:
-    Reverb(int sampleRate);
+    void Configure(int sampleRate);
     ~Reverb();
     double process(double input);
 
+    void FromXML(IXMLDOMNode* xml);
 private:
     CombFilter* m_combFilters[4];
     AllPassFilter* m_allPassFilters[2];

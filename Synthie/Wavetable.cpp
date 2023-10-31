@@ -44,6 +44,10 @@ bool Wavetable::Generate()
 void Wavetable::SetNote(CNote* note)
 {
 
+    // Load effects:
+    
+    CInstrument::LoadEffects(note->PNode());
+
     // Send the note to the frequency component:
     
     freq.SetNote(note);

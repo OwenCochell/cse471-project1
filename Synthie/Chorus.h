@@ -1,16 +1,19 @@
 #pragma once
 
+#include <vector>
+
 class Chorus {
 public:
-    Chorus(int sampleRate);
-    ~Chorus();
+    void Configure(int sampleRate);
 
-    void Process(double* frameIn, double* frameOut);
+    double Process(double frameIn);
+
+    void FromXML(IXMLDOMNode* xml);
 
 private:
     double DelayedSignal(double frameValue);
 
-    double* m_delayBuffer;
+    std::vector<double> m_delayBuffer;
     int m_bufferSize;
     int m_writeIndex;
 

@@ -5,8 +5,8 @@ public:
     DRC();
     ~DRC();
 
-    void Process(double* frameIn, double* frameOut);
-    void XmlLoad(IXMLDOMNode* xml);
+    double Process(double frameIn);
+    void FromXML(IXMLDOMNode* xml);
 
 private:
     double Compress(double frameValue);

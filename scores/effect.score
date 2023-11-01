@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <score bpm="120" beatspermeasure="2">
    <samples>
-      <sample name="test" path="C:\Users\Admin\Music\01-DXPiano_F2mono.wav" dump="C:\Users\Admin\Music\ddwave.wav"/>
+      <sample name="test" path="..\01-DXPiano_F2mono.wav"/>
    </samples>
    <effects>
       <effect name="delay" maxdelay="80000"/>

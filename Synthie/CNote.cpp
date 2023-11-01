@@ -3,7 +3,7 @@
 #include "xmlhelp.h"
 
 void CNote::XmlLoad(IXMLDOMNode* xml,
-    std::wstring& instrument)
+    std::wstring& instrument, bool nomeasure)
 {
     // Remember the xml node and the instrument.
     m_node = xml;
@@ -71,6 +71,10 @@ void CNote::XmlLoad(IXMLDOMNode* xml,
             value.ChangeType(VT_R8);
             duration = value.dblVal;
         }
+    }
+
+    if (nomeasure) {
+        m_measure = 0;
     }
 }
 

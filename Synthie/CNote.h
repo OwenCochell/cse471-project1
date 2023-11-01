@@ -26,7 +26,7 @@ public:
 
     bool HasGliss() { return !gnote.empty(); }
 
-    void XmlLoad(IXMLDOMNode* xml, std::wstring& instrument);
+    void XmlLoad(IXMLDOMNode* xml, std::wstring& instrument, bool nomeasure);
 
     bool operator<(const CNote& b);
 

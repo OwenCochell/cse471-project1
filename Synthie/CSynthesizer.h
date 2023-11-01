@@ -79,6 +79,8 @@ private:
     std::list<CInstrument*>  m_instruments;
     std::vector<CNote> m_notes;
 
+    bool nomeasure = false;
+
     // A map of samples loaded for use by other components
     std::map<wstring, std::shared_ptr<WaveContainer>> sample_map = {};
 

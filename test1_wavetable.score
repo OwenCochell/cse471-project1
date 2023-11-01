@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <score bpm="60" beatspermeasure="4">
    <samples>
-      <sample name="test" path="C:\Users\Admin\Music\01-DXPiano_F2mono.wav"/>
+      <sample name="test" path="01-DXPiano_F2mono.wav"/>
    </samples>
    <instrument instrument="WaveTable" sample="test" start="8830" stop="-1" base="F4">
 <note measure="0.0" beat="0.0" duration="0.18072275" note="G5"/>

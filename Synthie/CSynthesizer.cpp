@@ -78,7 +78,7 @@ void CSynthesizer::XmlLoadInstrument(IXMLDOMNode* xml)
 void CSynthesizer::XmlLoadNote(IXMLDOMNode* xml, std::wstring& instrument)
 {
     m_notes.push_back(CNote());
-    m_notes.back().XmlLoad(xml, instrument);
+    m_notes.back().XmlLoad(xml, instrument, nomeasure);
 
 }
 
@@ -254,6 +254,10 @@ void CSynthesizer::XmlLoadScore(IXMLDOMNode* xml)
         {
             value.ChangeType(VT_I4);
             m_beatspermeasure = value.intVal;
+        }
+        else if (name == L"nomeasure") {
+            // Configure ourselves to ignore measures:
+            nomeasure = true;
         }
     }
 
@@ -478,7 +482,7 @@ bool CSynthesizer::Generate(double* frame)
     // a new measure.  We might be a fraction into
     // the new measure, so we subtract out rather 
     // than just setting to zero.
-    if (m_beat > m_beatspermeasure)
+    if (!nomeasure && m_beat > m_beatspermeasure)
     {
         m_beat -= m_beatspermeasure;
         m_measure++;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <score bpm="30" beatspermeasure="4">
    <samples>
-      <sample name="test" path="C:\Users\Admin\Music\01-DXPiano_F2mono.wav"/>
+      <sample name="test" path="..\01-DXPiano_F2mono.wav"/>
    </samples>
    <instrument instrument="Additive" harmonic="1 0.7 0.5 0.4 0.3 0.3 0.2 0.1" harmonic2="1">
       <effect which="none" wet="0.20" dry="0.3"/>

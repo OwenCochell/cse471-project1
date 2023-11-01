@@ -38,6 +38,10 @@ bool CToneInstrument::Generate()
 
 void CToneInstrument::SetNote(CNote* note)
 {
+    // Load effects:
+
+    CInstrument::LoadEffects(note->PNode());
+
     // Get a list of all attribute nodes and the
     // length of that list
     CComPtr<IXMLDOMNamedNodeMap> attributes;

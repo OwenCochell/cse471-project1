@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<score bpm="60" beatspermeasure="4">
-   <samples>
-      <sample name="test" path="C:\Users\Admin\Music\01-DXPiano_F2mono.wav" dump="C:\Users\Admin\Music\ddwave.wav"/>
-   </samples>
-   <instrument instrument="WaveTable" sample="test" start="8830" stop="-1" base="F2">
-      <note measure="1" beat="1" duration="10" note="F2" gliss="F3"/>
-   </instrument>
-</score>

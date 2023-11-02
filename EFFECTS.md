@@ -1,0 +1,35 @@
+# Effect 
+Author: Mateja Milicevic Score: scores/effect.score
+
+This file describes the implementation of effects. The following effects have been implemented:
+
+* Chorus
+* Noise Gate
+* DRC
+* Flanger
+* Reverb
+* Ring Modulator
+
+## Chorus
+
+Audio effect class which includes methods to configure the chorus settings, generate a delayed signal based on a Low Frequency Oscillator (LFO), process an input audio frame to apply the chorus effect, and initialize settings from an XML node. 
+
+## Noise Gate
+
+Processing an input audio frame through the noise gate, adjusting the gate value based on a threshold, and initializing settings from an XML node.
+
+## DRC
+
+Dynamic Range Compression is used to reduce the volume of loud sounds or amplify quiet sounds in audio processing. The class has methods to apply compression to an input audio frame (Compress), process an input frame (Process), and initialize settings from an XML node (FromXML).
+
+## Flanger 
+
+The process method implements the core Flanger effect. It calculates a delay time based on a sinusoidal function of a phase variable, which is then used to obtain a delayed version of the input signal via the ``SimpleDelay`` object. The method returns an average of the input and delayed signals, achieving the Flanger effect.
+
+## Reverb 
+
+The `` process `` method first accumulates the output of all ``CombFilter`` objects by feeding the input signal through them and summing their outputs. This summed output is then sequentially processed through two ``AllPassFilter`` objects. The output of the last ``AllPassFilter`` is returned as the processed signal, representing the reverberated sound.
+
+## Ring Modulator
+
+Calculates a sinusoidal modulator signal based on the current phase, updates the phase for the next sample, and ensures the phase wraps within the range [0, 2π]. The method returns the product of the input signal and the sinusoidal modulator signal, thereby achieving the ring modulation effect.

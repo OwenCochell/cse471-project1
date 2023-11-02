@@ -10,6 +10,39 @@ This file describes the implementation of effects. The following effects have be
 * Reverb
 * Ring Modulator
 
+## Effect Send
+
+Effects are implemented via effect sends in the score file. First, an effect must be added to the score.
+These effects are added under the `effect` tag, and must be defined in the root XML node:
+
+```xml
+<effects>
+      <effect name="delay" maxdelay="80000"/>
+      <effect name="ringmod" freq="440.0" samp="44100"/>
+      <effect name="reverb" samp="44100"/>
+      <effect name="flanger" samp="44100"/>
+      <effect name="chorus" samp="44100"/>
+      <effect name="noise" threshold="0.5"/>
+      <effect name="drc" threshhold="0.5" ratio="0.5" attack="0.5" release="0.5" knee="0.5"/>
+</effects>
+```
+Here, each effect is defined, and the configuration parameters are set.
+To send instrument audio to an effect, you can use the `effect` tag under each instrument:
+
+```xml
+<effect which="noise" wet="0.5" dry="0.25"/>
+```
+
+`which` is the name of the effect to send to. The parameters `wet` is the amplitude of the audio exiting the effect,
+and the `dry` parameter is the amplitude of instrument audio entering the effect.
+The effect audio is then mixed together with the other effects.
+Multiple effects can be provided, and the effects will apply to all notes under the specified instrument.
+
+Instruments can also supply the `none` effect, which applies the `wet` and `dry`
+amplitude changes, but otherwise does not change the audio.
+If no effects are provided, then the sequencer will automatically apply the `none` effect with `wet` and `dry`
+at `1`, effectively leaving the audio unchanged.
+
 ## Chorus
 
 Audio effect class which includes methods to configure the chorus settings, generate a delayed signal based on a Low Frequency Oscillator (LFO), process an input audio frame to apply the chorus effect, and initialize settings from an XML node. 

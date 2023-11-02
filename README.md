@@ -1,6 +1,6 @@
 # cse471-project1
 
-This project contains the code for the first CSE471 project.
+This project contains the code for the first CSE471 project. It is based off of the Synthie program from Step 5, and also uses the score format from this assignment.
 
 Team Members: Emily Feuer, Owen Cochell, Mateja Milicevic
 

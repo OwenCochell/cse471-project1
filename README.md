@@ -17,3 +17,4 @@ Components Added:
 
 Selection Title: Moe's Theme (Team members' initials spell M.O.E.)
 - Score: scores/moestheme.score
+- Audio file: moestheme.wav

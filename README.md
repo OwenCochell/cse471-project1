@@ -1,6 +1,6 @@
 # cse471-project1
 
-This project contains the code for the first CSE471 projects.
+This project contains the code for the first CSE471 project.
 
 Team Members: Emily Feuer, Owen Cochell, Mateja Milicevic
 

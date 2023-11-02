@@ -5,8 +5,15 @@ This project contains the code for the first CSE471 projects.
 Team Members: Emily Feuer, Owen Cochell, Mateja Milicevic
 
 Components Added: 
-- Effects (Score: scores/effect.score)
-- Additive (Score: scores/additive.score)
-- Wavetable (Score: scores/wavetable.score)
+- Effects
+  - Score: scores/effect.score
+  - Description: EFFECTS.md
+- Additive
+  - Score: scores/additive.score
+  - Description: ADDITIVE.md
+- Wavetable
+  - Score: scores/wavetable.score
+  - Description: WAVETABLE.md
 
-Selection Title: (Score: 
+Selection Title: Moe's Theme (Team members' initials spell M.O.E.)
+- Score: scores/moestheme.score
